@@ -1,0 +1,26 @@
+.inner-container {
+    background-color:#F5F6F7;
+
+}
+
+.title-container {
+    background-color: white;
+    padding: 5px;
+
+}
+
+.text-container {
+   background-color: #F5F6F7;
+   padding: 5px;
+   margin-bottom: 10px;
+
+}
+
+input {
+    justify-content: center;
+    text-align: center;
+}
+
+.col-md-12 {
+    margin: 5px;
+}
