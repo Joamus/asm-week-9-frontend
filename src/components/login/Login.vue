@@ -8,11 +8,11 @@
     <div class="row">
 
       <div class="col-md-12">
-        <input type="text" placeholder="Brugernavn" v-model="username"/>
+        <input type="text" placeholder="Brugernavn" v-model="user.username"/>
       </div>
       
       <div class="col-md-12">
-        <input type="text" placeholder="Password" v-model="password"/>
+        <input type="password" placeholder="Password" v-model="user.password"/>
       </div>
 
       <div class="col-md-12" style="padding-top: 1rem">
@@ -26,10 +26,15 @@
 </template>
 
 <script>
+import axios from 'axios'
+import globalState from '../../global-state.js'
+
 export default {
+
   name: 'Login',
   data() {
       return  {
+        user: {
           username: '',
           password: '',
           email: '',
@@ -38,11 +43,23 @@ export default {
           streetName: '',
           streetNumber: '', 
           }
+      }
   },
   methods: {
     login() {
-      console.log('Login')
-    }
+    axios.post(`${globalState.apiUrl}/api/login`, this.user)
+    .then((response) => {
+      globalState.state.user = response.data;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${globalState.state.user.token}`
+      globalState.state.loggedIn = true
+      this.$router.push({name: 'home'})
+
+    })
+    .catch((errorResponse) => {
+      console.log(errorResponse)
+    })
+    console.log('Login')
+  }
   }
   
 }

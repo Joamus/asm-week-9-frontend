@@ -4,6 +4,8 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
 
+import globalState from './global-state'
+
 import 'bootstrap/dist/css/bootstrap.css'
 
 
@@ -17,9 +19,9 @@ const router = new VueRouter ({
 
 })
 
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   if (to.path != '/login') {
-    if (store.loggedIn === true) {
+    if (globalState.state.loggedIn === true) {
       next();
     } else {
      router.push({name: 'login'})
@@ -27,7 +29,7 @@ const router = new VueRouter ({
   } else {
     next();
   }
-}) */
+}) 
 
 new Vue({
   router,

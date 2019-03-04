@@ -7,7 +7,7 @@
           integrity="sha384-NJXGk7R+8gWGBdutmr+/d6XDokLwQhF1U3VA7FhvBDlOq7cNdI69z7NQdnXxcF7k" 
           crossorigin="anonymous">
     <Topbar/>
-    <div class="container" style="">
+    <div class="container" style="padding-top: 10px">
       <router-view></router-view>
     </div>  
 

@@ -1,6 +1,4 @@
 <template>
-
-
 <div style="padding-top: 2rem">
   <div class="col-md-12">
       <div>
@@ -10,36 +8,36 @@
     <div class="row">
       
       <div class="col-md-12">
-        <input v-model="username" placeholder="Brugernavn" type="text"/>
+        <input v-model="user.username" placeholder="Brugernavn" type="text"/>
       </div>
 
     
       <div class="col-md-12">
-        <input v-model="password" placeholder="Kodeord" type="text"/>
+        <input v-model="user.password" placeholder="Kodeord" type="password"/>
       </div>
 
       
       <div class="col-md-12">
-        <input v-model="email" placeholder="Email" type="text"/>
+        <input v-model="user.email" placeholder="Email" type="text"/>
       </div>
 
       
       <div class="col-md-12">
-        <input v-model="zip" placeholder="Postnummer" type="text"/>
+        <input v-model="user.zip" placeholder="Postnummer" type="text"/>
       </div>
 
       <div class="col-md-12">
-        <input v-model="city" placeholder="By" type="text"/>
+        <input v-model="user.city" placeholder="By" type="text"/>
       </div>
 
       
       <div class="col-md-12">
-        <input v-model="streetName" placeholder="Adresse" type="text"/>
+        <input v-model="user.streetName" placeholder="Adresse" type="text"/>
       </div>
 
   
       <div class="col-md-12">
-        <input v-model="streetNumber" placeholder="Husnummer" type="text"/>
+        <input v-model="user.streetNumber" placeholder="Husnummer" type="text"/>
       </div>
 
 
@@ -47,8 +45,7 @@
       <div class="col-md-12" style="padding-top: 1rem">
         <button @click="signup()">Opret</button>
 
-      </div>
-      
+      </div>    
     </div>
     
   </div>
@@ -60,10 +57,12 @@
 
 import axios from 'axios'
 
+
 export default {
   name: 'Signup',
   data() {
       return  {
+        user: {
           username: '',
           password: '',
           email: '',
@@ -72,14 +71,23 @@ export default {
           streetName: '',
           streetNumber: '', 
           }
+      }
+          
 
   },
 
   methods: {
     signup() {
-      console.log('Signup')
+      axios.post(`${globalState.apiUrl}/api/signup`, this.user)
+      .then((response) => {
+
+      })
+      .catch((errorResponse) => {
+      })
     }
-  }
+  },
+
+  
   
 }
 </script>
