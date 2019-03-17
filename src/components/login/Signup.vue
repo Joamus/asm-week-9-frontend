@@ -4,6 +4,7 @@
       <div>
         <h3>Opret bruger</h3>
       </div>
+      {{errorMessage}}
     </div>
     <div class="row">
       
@@ -56,6 +57,7 @@
 <script>
 
 import axios from 'axios'
+import globalState from '../../global-state';
 
 
 export default {
@@ -70,7 +72,9 @@ export default {
           city: '',
           streetName: '',
           streetNumber: '', 
-          }
+          },
+
+          errorMessage: ""
       }
           
 
@@ -80,9 +84,12 @@ export default {
     signup() {
       axios.post(`${globalState.apiUrl}/api/signup`, this.user)
       .then((response) => {
+        console.log(response)
 
       })
       .catch((errorResponse) => {
+
+        this.errorMessage = "Error: " + errorResponse.response.data.message
       })
     }
   },
